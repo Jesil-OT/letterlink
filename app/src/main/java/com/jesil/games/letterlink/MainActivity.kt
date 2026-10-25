@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.jesil.games.letterlink.game.screen.GameScreen
 import com.jesil.games.letterlink.home.screen.HomeScreen
 
 
@@ -26,6 +27,7 @@ class MainActivity : ComponentActivity() {
         }
         setContent {
             HomeScreen()
+//            GameScreen()
         }
     }
 }
