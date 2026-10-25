@@ -1,5 +1,10 @@
 package com.jesil.games.letterlink.home.screen
 
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,6 +14,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,11 +43,19 @@ fun HomeScreen() {
             .padding(top = 120.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         content = {
+            val infiniteTransition = rememberInfiniteTransition()
+            val pulsate = infiniteTransition.animateFloat(
+                initialValue = 50f,
+                targetValue = 53f,
+                animationSpec = infiniteRepeatable(tween(1200), RepeatMode.Reverse)
+            )
+
             Row(
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 "LETTER".forEachIndexed { i, c ->
                     GameTile(
+                        modifier = Modifier.size(height = 58.dp, width = pulsate.value.dp),
                         letter = c.toString(),
                         face = when (i) {
                             0 -> GameBrown
@@ -60,6 +74,7 @@ fun HomeScreen() {
             ) {
                 "LINK".forEachIndexed { i, c ->
                     GameTile(
+                        modifier = Modifier.size(height = 58.dp, width = pulsate.value.dp),
                         letter = c.toString(),
                         face = when (i) {
                             0 -> Color.White
