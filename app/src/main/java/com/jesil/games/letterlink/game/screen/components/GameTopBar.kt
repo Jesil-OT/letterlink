@@ -1,13 +1,11 @@
 package com.jesil.games.letterlink.game.screen.components
 
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesil.games.letterlink.core.components.GameActionBack
 import com.jesil.games.letterlink.core.components.GameActionPause
@@ -25,7 +23,7 @@ fun GameTopbar(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         content = {
-            GameActionBack (onClick = onBack)
+            GameActionBack (onBack = onBack)
             Text(
                 modifier = Modifier.weight(1f),
                 text = round,
@@ -35,7 +33,7 @@ fun GameTopbar(
                     fontSize = 18.sp
                 )
             )
-            GameActionPause(onClick = onPause)
+            GameActionPause(onPause = onPause)
         }
     )
 }
