@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -76,5 +77,25 @@ fun GameScoreCard(
                 )
             }
         }
+    }
+}
+
+@Composable
+fun GameTimer(
+    modifier: Modifier = Modifier,
+    timer: String
+) {
+    GameActionSurface(
+        modifier = modifier.padding(horizontal = 20.dp, vertical = 10.dp),
+        shape = RoundedCornerShape(360.dp),
+        borderColor = GameTextColor
+    ) {
+        Text(
+            timer,
+            style = Typographys.bodyLarge.copy(
+                color = GameTextColor,
+                fontSize = 16.sp
+            )
+        )
     }
 }

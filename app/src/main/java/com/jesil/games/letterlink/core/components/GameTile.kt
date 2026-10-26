@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jesil.games.letterlink.ui.theme.GameInk
@@ -20,10 +21,11 @@ fun GameTile(
     letter: String,
     face: Color,
     modifier: Modifier = Modifier,
+    letterSize: TextUnit = 30.sp,
     onClick: (() -> Unit)? = null,
 ) {
     GameSurface(modifier.size(width = 50.dp, height = 58.dp), face = face, onClick = onClick) {
-        Text(letter.uppercase(getDefault()), fontSize = 30.sp, style = Typographys.bodyLarge, color = GameInk)
+        Text(letter.uppercase(getDefault()), fontSize = letterSize, style = Typographys.bodyLarge, color = GameInk)
     }
 }
 

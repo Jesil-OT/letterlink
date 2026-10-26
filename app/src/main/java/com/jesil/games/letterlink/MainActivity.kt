@@ -19,15 +19,13 @@ class MainActivity : ComponentActivity() {
             ViewCompat.getWindowInsetsController(window.decorView)
 
         if (windowInsetsController != null) {
-            // Hide both the status bar and the navigation bar
             windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
 
-            // Configure how the bars behave when swiped (e.g., transient swipe)
             windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
         setContent {
-            HomeScreen()
-//            GameScreen()
+//            HomeScreen()
+            GameScreen()
         }
     }
 }
