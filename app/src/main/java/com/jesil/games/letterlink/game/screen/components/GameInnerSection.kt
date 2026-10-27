@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -39,10 +40,11 @@ import com.jesil.games.letterlink.ui.theme.Typographys
 
 @Composable
 fun GameInnerSection(modifier: Modifier = Modifier) {
-    val currentWord = "Tens"
+    val currentWord = remember { mutableStateOf("Tens") }
     val selectedIndex = remember { mutableStateOf<Int?>(null) }
     val alphabetIndex = remember { mutableStateOf<Int?>(null) }
-    val context = LocalContext.current
+
+    val currentLetterSelected = remember { mutableStateOf<Char?>(null) }
     Box(
         modifier
             .clip(RoundedCornerShape(topStart = 36.dp, topEnd = 36.dp))
@@ -58,7 +60,7 @@ fun GameInnerSection(modifier: Modifier = Modifier) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(10.dp),
                         content = {
-                            currentWord.forEachIndexed { index, wordChar ->
+                            currentWord.value.forEachIndexed { index, wordChar ->
                                 val isSelected = selectedIndex.value == index
                                 GameTile(
                                     letter = wordChar.toString(),
@@ -67,6 +69,7 @@ fun GameInnerSection(modifier: Modifier = Modifier) {
                                     modifier = Modifier.size(height = 76.dp, width = 68.dp),
                                     onClick = {
                                         selectedIndex.value = index
+//                                        currentLetterSelected.value = currentWord.value[index]
                                     }
                                 )
                             }
@@ -80,20 +83,22 @@ fun GameInnerSection(modifier: Modifier = Modifier) {
                             fontSize = 14.sp
                         )
                     )
-                    Spacer(Modifier.height(15.dp))
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(7),
                         verticalArrangement = Arrangement.spacedBy(7.dp),
                         horizontalArrangement = Arrangement.spacedBy(7.dp),
+                        contentPadding = PaddingValues(vertical = 15.dp),
                         content = {
-                            itemsIndexed(alphabets){ index, alphabet ->
+                            itemsIndexed(alphabets) { index, alphabet ->
                                 val playerOneSelection = alphabetIndex.value == index
                                 val face = if (playerOneSelection) GameTeal else Color.White
                                 GameActionKeyboardItem(
                                     alphabet = alphabet.toString(),
                                     face = face,
                                     onAlphabetLetter = {
-                                        alphabetIndex.value = index
+                                        if (selectedIndex.value != null)
+                                            alphabetIndex.value = index
+                                            currentLetterSelected.value = alphabets[index]
                                     },
                                     isSelected = playerOneSelection
                                 )
