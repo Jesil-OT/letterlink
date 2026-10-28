@@ -25,6 +25,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.jesil.games.letterlink.core.components.GameButton
 import com.jesil.games.letterlink.core.components.GameTile
 import com.jesil.games.letterlink.ui.theme.GameBrown
@@ -35,7 +37,9 @@ import com.jesil.games.letterlink.ui.theme.GameYellow
 import com.jesil.games.letterlink.ui.theme.Typographys
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    navController: NavController
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -107,7 +111,7 @@ fun HomeScreen() {
                             GameButton(
                                 title = "Pass & Play",
                                 subtitle = "Two players, one phone",
-                                onClick = {}
+                                onClick = { navController.navigate("game_screen") }
                             )
                             Spacer(Modifier.height(12.dp))
                             GameButton(
@@ -155,5 +159,5 @@ fun HomeScreen() {
 @Preview
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(rememberNavController())
 }
