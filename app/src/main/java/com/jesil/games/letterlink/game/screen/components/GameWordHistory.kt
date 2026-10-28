@@ -16,9 +16,10 @@ import com.jesil.games.letterlink.core.components.WordPlaceholder
 import com.jesil.games.letterlink.ui.theme.GameInk
 import com.jesil.games.letterlink.ui.theme.GameTextColor
 
-@Preview
 @Composable
-fun GameWordHistory() {
+fun GameWordHistory(
+   wordHistory: List<String>
+) {
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -44,7 +45,3 @@ fun GameWordHistory() {
         }
     )
 }
-
-val wordHistory = listOf(
-    "Sent", "Tent", "Tens", "Fens"
-)

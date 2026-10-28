@@ -6,7 +6,10 @@ data class GameState(
     val activeIndex: Int = 0,
     val stealPending: Boolean = false,
     val missesInRow: Int = 0,
+    val restarted: Boolean = false,     // true when a new starting word was just picked
+    val lastResult: TurnResult = TurnResult.None,
     val winnerId: Int? = null,
 ){
     val currentWord: String get() = history.last()
+    val activePlayer: Player get() = players[activeIndex]
 }
